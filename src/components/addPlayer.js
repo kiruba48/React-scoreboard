@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class AddPlayer extends Component {
+  static propTypes = {
+    addPlayer: PropTypes.func,
+  };
+
   state = {
     value: '',
   };

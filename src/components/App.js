@@ -7,22 +7,22 @@ class App extends Component {
   state = {
     players: [
       {
-        name: 'Guil',
+        name: 'Kiruba',
         score: 0,
         id: 1,
       },
       {
-        name: 'Treasure',
+        name: 'Karan',
         score: 0,
         id: 2,
       },
       {
-        name: 'Ashley',
+        name: 'Ruta',
         score: 0,
         id: 3,
       },
       {
-        name: 'James',
+        name: 'Rezi',
         score: 0,
         id: 4,
       },
@@ -61,7 +61,18 @@ class App extends Component {
     });
   };
 
+  // get high score for crown
+  getHighScore = () => {
+    const scores = this.state.players.map((p) => p.score);
+    const highScore = Math.max(...scores);
+    if (highScore) {
+      return highScore;
+    }
+    return null;
+  };
+
   render() {
+    const highScore = this.getHighScore();
     return (
       <div className='scoreboard'>
         <Header title='Scoreboard' players={this.state.players} />
@@ -76,6 +87,7 @@ class App extends Component {
             key={player.id.toString()}
             removePlayer={this.handleRemovePlayer}
             changeScore={this.handleScoreChange}
+            isHighScore={highScore === player.score}
           />
         ))}
 
